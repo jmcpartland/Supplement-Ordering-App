@@ -22,9 +22,13 @@ Database:
 users - table
 	first_name
 	last_name
+    username
+    password_digest
+    
 
 supplements - table
 	name
+    description
 	manufacturer
 
 orders - table

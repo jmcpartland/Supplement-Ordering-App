@@ -1,0 +1,3 @@
+class Supplement < ApplicationRecord
+
+end
