@@ -31,6 +31,7 @@ const Navbar = () => {
                 <NavLink to='/signup'>
                     <button>Signup</button>
                 </NavLink>
+                <hr/>
             </div>
         )
     }

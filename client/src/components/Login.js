@@ -1,4 +1,4 @@
-import react, { useContext, useDeferredValue, useState } from 'react';
+import react, { useContext, useState } from 'react';
 import { UserContext } from "../context/user";
 
 const Login = () => {
