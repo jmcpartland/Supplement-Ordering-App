@@ -1,7 +1,7 @@
 Models:
-    users
-    orders
-    supplements
+    user
+    order
+    supplement
 
 User -< Order >- Supplement
 User -< Supplement
@@ -24,7 +24,7 @@ users - table
 	last_name
     username
     password_digest
-    
+
 
 supplements - table
 	name

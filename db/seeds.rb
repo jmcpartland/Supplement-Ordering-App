@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Supplement.create(name: 'Melatonin', manufacturer: "Douglas Labs", serving_size: 1)
+Supplement.create(name: 'Vitamin C', manufacturer: "Pure Encapsulation", serving_size: 1)
+Supplement.create(name: 'Vitamin D', manufacturer: "Pure Encapsulation", serving_size: 1)
+
