@@ -1,12 +1,14 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../context/user";
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Signup = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [passwordConfirmation, setPasswordConformation] = useState("")
+    const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errorsList, setErrorsList] = useState([])
+
+    const navigate = useNavigate()
 
     const {signup} = useContext(UserContext);
 
@@ -26,11 +28,11 @@ const Signup = () => {
         .then(user => {
             if (!user.errors) {
                 signup(user)
-                // history.push('/')
+                navigate('/')
             } else {
                 setUsername("")
                 setPassword("")
-                setPasswordConformation("")
+                setPasswordConfirmation("")
                 const errorLis = user.errors.map(e => <li>{e}</li>)
                 setErrorsList(errorLis)
             }
@@ -59,7 +61,7 @@ const Signup = () => {
                     type="password"
                     id="passwordConfirmation"
                     value={passwordConfirmation}
-                    onChange={(e) => setPasswordConformation(e.target.value)}
+                    onChange={(e) => setPasswordConfirmation(e.target.value)}
                 /> <br/>
                 <input type="submit" />
             </form>

@@ -6,26 +6,25 @@ const UserContext = React.createContext();
 // create provider component
 
 function UserProvider({ children }) {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
 
     useEffect(() => {
         fetch('/me')
         .then(res => res.json())
-        .then(user => {
-            setUser(user)
-            user.error ? setLoggedIn(false) : setLoggedIn(true)
+        .then(data => {
+            setUser(data)
+            data.error ? setLoggedIn(false) : setLoggedIn(true)
         })
-
     }, [])
 
-    const login = () => {
+    const login = (user) => {
         setUser(user)
         setLoggedIn(true)
     }
 
     const logout = () => {
-        setUser(null)
+        setUser({})
         setLoggedIn(false)
     }
 

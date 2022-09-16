@@ -1,27 +1,33 @@
-import react, { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserContext } from "../context/user";
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
-    
+
+    const navigate = useNavigate()
+
     const {login} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault()
         
+        // debugger
+
         fetch('/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
-            body: {
+            body: JSON.stringify({
                 username: username,
                 password: password
-            }
+            })
         })
         .then(res => res.json())
         .then(user => {
             login(user)
+            navigate('/')
         })
     }
 
