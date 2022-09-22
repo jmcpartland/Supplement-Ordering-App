@@ -6,7 +6,7 @@ const Home = () => {
     
     // debugger;
 
-    if (!user || user.error) {
+    if (!loggedIn || user.error) {
         return(<h3>Please Login or Signup</h3>)
     }
     else {
