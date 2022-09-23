@@ -25,7 +25,6 @@ users - table
     username
     password_digest
 
-
 supplements - table
 	name
     description

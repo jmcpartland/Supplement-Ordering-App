@@ -23,6 +23,12 @@ const Navbar = () => {
         .then(data => console.log(data))
     }
 
+    const handleShowOrders = () => {
+        fetch('/orders')
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
 
     if (loggedIn) {
         return (
@@ -30,6 +36,7 @@ const Navbar = () => {
                 <h1>Navbar</h1>
                 <h2>Hello {user.username}</h2>
                 <button onClick={ handleShowSupplements }>Show Supplements</button> | {' '}
+                <button onClick={ handleShowOrders }>Show Orders</button> | {' '}
                 <button onClick={ handleLogout }>Logout</button>
                 <hr/>
             </div>

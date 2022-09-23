@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
-    belongs_to :users
-    belongs_to :supplements
+    # validates :quantity, :price, :user_id, :supplement_id, presence: true
+
+    belongs_to :user
+    belongs_to :supplement
 end
