@@ -17,12 +17,13 @@ const Navbar = () => {
         })
     }
 
-    const handleShowSupplements = () => {
-        fetch('/supplements')
-        .then(res => res.json())
-        .then(data => console.log(data))
+    const handleShowAllSupplements = () => {
+        navigate('/supplements')
     }
 
+    const handleShowHome = () => {
+        navigate('/')
+    }
     const handleShowOrders = () => {
         fetch('/orders')
         .then(res => res.json())
@@ -35,7 +36,8 @@ const Navbar = () => {
             <div>
                 <h1>Navbar</h1>
                 <h2>Hello {user.username}</h2>
-                <button onClick={ handleShowSupplements }>Show Supplements</button> | {' '}
+                <button onClick={ handleShowHome }>Home</button> | {' '}
+                <button onClick={ handleShowAllSupplements }>Show All Supplements</button> | {' '}
                 <button onClick={ handleShowOrders }>Show Orders</button> | {' '}
                 <button onClick={ handleLogout }>Logout</button>
                 <hr/>

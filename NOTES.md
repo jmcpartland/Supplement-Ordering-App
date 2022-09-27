@@ -20,15 +20,13 @@ Relationships:
 Database:
 
 users - table
-	first_name
-	last_name
     username
     password_digest
 
 supplements - table
 	name
-    description
 	manufacturer
+    serving_size
 
 orders - table
 	user_id

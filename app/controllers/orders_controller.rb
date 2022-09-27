@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
         end
     end
 
-    def show
+    def show                
         order = current_user.orders.find_by(id: params[:id])
         if order
             render json: order

@@ -6,6 +6,7 @@ import Signup from "./components/Signup"
 import Login from "./components/Login"
 import Navbar from "./components/Navbar"
 import Supplements from "./components/Supplements"
+import SupplementForm from "./components/SupplementForm"
 import { UserProvider } from "./context/user"
 
 
@@ -20,6 +21,7 @@ function App(props) {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/supplements" element={<Supplements />} />
+          <Route exact path="/supplement-form" element={<SupplementForm />} />
         </Routes>
       </UserProvider>
     </div>

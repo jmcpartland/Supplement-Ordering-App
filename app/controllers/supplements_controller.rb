@@ -2,12 +2,15 @@ class SupplementsController < ApplicationController
     before_action :authorize
 
     def index
-        supplements = current_user.supplements
+        supplements = Supplement.all
         render json: supplements
     end
 
     def create
-        supplement = current_user.supplements.create(supplement_params)
+        
+        # binding.pry
+
+        supplement = Supplement.create(supplement_params)
         if supplement.valid?
             render json: supplement
         else

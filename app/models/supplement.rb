@@ -1,5 +1,5 @@
 class Supplement < ApplicationRecord
-    validates :name, presence: true, uniqueness: true
+    validates :name, presence: true
     validates :manufacturer, :serving_size, presence: true
 
     has_many :orders
