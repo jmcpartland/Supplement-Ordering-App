@@ -24,12 +24,22 @@ const Navbar = () => {
     const handleShowHome = () => {
         navigate('/')
     }
-    const handleShowOrders = () => {
+
+    const handleShowMyOrders = () => {
         fetch('/orders')
         .then(res => res.json())
         .then(data => console.log(data))
     }
 
+
+    // * * * * * * * * * * * 
+    //  I N C O M P L E T E
+    const handleCreateOrder = () => {
+        fetch('/orders')
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+    
 
     if (loggedIn) {
         return (
@@ -38,7 +48,8 @@ const Navbar = () => {
                 <h2>Hello {user.username}</h2>
                 <button onClick={ handleShowHome }>Home</button> | {' '}
                 <button onClick={ handleShowAllSupplements }>Show All Supplements</button> | {' '}
-                <button onClick={ handleShowOrders }>Show Orders</button> | {' '}
+                <button onClick={ handleShowMyOrders }>Show My Orders</button> | {' '}
+                <button onClick={ handleCreateOrder }>Create New Order</button> | {' '}
                 <button onClick={ handleLogout }>Logout</button>
                 <hr/>
             </div>
