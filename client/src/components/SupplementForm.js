@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SupplementForm({supplement}) {
+function SupplementForm() {
 
     const [name, setName] = useState("")
     const [manufacturer, setManufacturer] = useState("")

@@ -26,21 +26,13 @@ const Navbar = () => {
     }
 
     const handleShowMyOrders = () => {
-        fetch('/orders')
-        .then(res => res.json())
-        .then(data => console.log(data))
+        navigate('/orders')
     }
 
-
-    // * * * * * * * * * * * 
-    //  I N C O M P L E T E
     const handleCreateOrder = () => {
-        fetch('/orders')
-        .then(res => res.json())
-        .then(data => console.log(data))
+        navigate('/order-form')
     }
     
-
     if (loggedIn) {
         return (
             <div>

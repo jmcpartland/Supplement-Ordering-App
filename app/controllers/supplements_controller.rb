@@ -7,9 +7,6 @@ class SupplementsController < ApplicationController
     end
 
     def create
-        
-        # binding.pry
-
         supplement = Supplement.create(supplement_params)
         if supplement.valid?
             render json: supplement

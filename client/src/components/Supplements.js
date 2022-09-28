@@ -24,16 +24,25 @@ const Supplements = () => {
         navigate('/supplement-form')
     }
 
-    return(
-        <div>
-            <h2>Supplements</h2>
 
-            <button onClick={ handleCreateSupplement }>Create Supplement</button>
-            <br />
-                {listSupplements}
+    if (loggedIn) {
+        return(
+            <div>
+                <h2>Supplements</h2>
 
-        </div>
-    )
+                <button onClick={ handleCreateSupplement }>Create Supplement</button>
+                <br />
+                    {listSupplements}
+
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <h3>You need to be logged in to see supplements</h3>
+            </div>
+        )
+    }    
 }
 
 export default Supplements;

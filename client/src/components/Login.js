@@ -9,7 +9,7 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const {login} = useContext(UserContext);
+    const {login, loggedIn} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -25,9 +25,16 @@ const Login = () => {
             })
         })
         .then(res => res.json())
+
         .then(user => {
-            login(user)
-            navigate('/')
+            if (!user.error) {
+                login(user)
+                navigate('/')
+            } else {
+                setUsername("")
+                setPassword("")
+                setError(user.error)
+            }
         })
     }
 

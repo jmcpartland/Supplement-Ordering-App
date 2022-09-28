@@ -31,7 +31,8 @@ supplements - table
 orders - table
 	user_id
 	supplement_id
-	quantity
+	order_number
+    quantity
 	price
 
 
