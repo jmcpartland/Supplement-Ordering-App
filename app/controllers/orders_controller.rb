@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-        params.permit(:quantity, :price, :user_id, :supplement_id)
+        params.permit(:order_number, :quantity, :supplement_id)
     end
     
     def authorize

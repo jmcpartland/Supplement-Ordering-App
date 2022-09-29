@@ -26,7 +26,7 @@ const Supplements = () => {
 
 
     if (loggedIn) {
-        return(
+        return (
             <div>
                 <h2>Supplements</h2>
 

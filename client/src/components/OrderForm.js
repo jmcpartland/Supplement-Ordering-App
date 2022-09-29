@@ -1,28 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from "react-router-dom"
+import { UserContext } from "../context/user";
 import SupplementCheckbox from './SupplementCheckbox';
 
 function OrderForm() {
+    const navigate = useNavigate()
+    const { loggedIn } = useContext(UserContext)
 
     const [supplement, setSupplement] = useState("")
-    const [username, setUsername] = useState("")
     const [orderNumber, setOrderNumber] = useState("")
     const [quantity, setQuantity] = useState("")
-    const [price, setPrice] = useState("")
     const [errorsList, setErrorsList] = useState([])
     const [allSupplements, setAllSupplements] = useState([])
+    // const [username, setUsername] = useState("")
+    // const [price, setPrice] = useState("")
 
 
     useEffect(() => {
         fetch('/supplements')
         .then(res => res.json())
-        .then(data => setAllSupplements(data))
+        .then(data => {
+            setAllSupplements(data)
+            // console.log(data)
+        })
     }, [])
 
+    
     const handleCheckboxes = (e) => {
-        console.log(e)
+        setSupplement(e.target.value)
+        console.log(e.target.value)
     }
 
-    const listSupplements = allSupplements.map(s => < SupplementCheckbox key={s.id} supplement={s} handleCheckboxes={handleCheckboxes} />)
+    const listSupplements = allSupplements.map(s => <SupplementCheckbox key={s.id} supplement={s} handleCheckboxes={handleCheckboxes} />)
 
 
     const handleSubmit = (e) => {
@@ -33,55 +42,57 @@ function OrderForm() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 orderNumber: orderNumber,
-                username: username,
-                supplement: supplement,
+                // username: username,
+                supplement_id: supplement,
                 quantity: parseInt(quantity),
-                price: parseInt(price)
+                // price: parseInt(price)
             })
         })
         .then(res => res.json())
         .then(s => {
             setOrderNumber("")
-            setUsername("")
             setSupplement("")
             setQuantity("")
-            setPrice("")
+            navigate('/orders')
         })
     }
 
 
+    if (loggedIn) {
+        return (
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <label>Order Number: </label>
+                    <input 
+                        type="number"
+                        id="orderNumber"
+                        value={orderNumber}
+                        onChange={(e) => setOrderNumber(e.target.value)}
+                    /> <br/>
+                    <h3>Choose Supplements: </h3>
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>Order Number:</label>
-                <input 
-                    type="number"
-                    id="orderNumber"
-                    value={orderNumber}
-                    onChange={(e) => setOrderNumber(e.target.value)}
-                /> <br/>
-                <label>Supplement:</label>
+                    {listSupplements}
+                    <br />
 
-                {listSupplements}
-
-                <input 
-                    type="text"
-                    id="supplement"
-                    value={supplement}
-                    onChange={(e) => setSupplement(e.target.value)}
-                /> <br/>
-                <label>Quantity:</label>
-                <input 
-                    type="number"
-                    id="quantity"
-                    value={quantity}
-                    onChange={(e) => setQuantity(e.target.value)}
-                /> <br/>
-                <input type="submit" />
-            </form>
-        </div>
-    )
+                    <label>Quantity: </label>
+                    <input 
+                        type="number"
+                        id="quantity"
+                        value={quantity}
+                        onChange={(e) => setQuantity(e.target.value)}
+                    /> <br/>
+                    <input type="submit" />
+                    <br />
+                </form>
+            </div>
+        )
+    } else {
+        return (
+            <div>
+                <h3>You need to be logged in to see the Order form</h3>
+            </div>
+        )
+    }
 }
 
 export default OrderForm

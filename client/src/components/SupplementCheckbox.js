@@ -3,28 +3,21 @@ import React from 'react';
 function SupplementCheckbox({supplement, handleCheckboxes}) {
 
     return (
-        <div>
-            <h3>{supplement.name}</h3>
-            <p>Manufacturer: {supplement.manufacturer}</p>
-            <p>Serving Size: {supplement.serving_size}</p>
-
-
-
-        <label>
-          All Supplements:
-          <input
-            name={supplement.name}
-            type="checkbox"
-            // checked={}
-            onChange={handleCheckboxes}
-            />
-        </label>
-        <br />
-
-
-
-
-        </div>
+        <>
+            <hr />
+            <label>
+            <b>{supplement.name}</b>
+            <input
+                type="radio"
+                name="supplement"
+                value={supplement.id}
+                // checked={}
+                onChange={handleCheckboxes}
+                />
+            </label>
+            <br />
+            Manufacturer: {supplement.manufacturer}
+        </>
     )
 }
 
