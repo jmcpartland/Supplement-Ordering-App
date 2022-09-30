@@ -3,21 +3,21 @@ import { UserContext } from "../context/user"
 import Order from "./Order"
 
 const Orders = () => {
+    const [orders, setOrders] = useState([])
     const { user, loggedIn } = useContext(UserContext)
-    const { orders, setOrders } = useState([])
 
     useEffect(() => {
         fetch('/orders')
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => setOrders(data))
     }, [])
 
-    // const listOrders = orders.map(o => <Order key={o.id} orders={o} />)
+    const listOrders = orders.map(o => <Order key={o.id} order={o} />)
 
     return(
         <div>
-            <h2>Orders</h2>
-            {/* {listOrders} */}
+            <h2>My Orders</h2>
+            {listOrders}
         </div>
     )
 }

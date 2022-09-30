@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
     def index
         # binding.pry
         orders = current_user.orders
-        render json: orders
+        render json: orders, include: :supplement
     end
 
     def create
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-        params.permit(:order_number, :quantity, :supplement_id)
+        params.permit(:name, :order_number, :quantity, :supplement_id)
     end
     
     def authorize

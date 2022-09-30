@@ -7,14 +7,12 @@ function OrderForm() {
     const navigate = useNavigate()
 
     const { loggedIn } = useContext(UserContext)
-
+    const [orderName, setOrderName] = useState("")
     const [supplement, setSupplement] = useState("")
     const [orderNumber, setOrderNumber] = useState("")
     const [quantity, setQuantity] = useState("")
     const [errorsList, setErrorsList] = useState([])
     const [allSupplements, setAllSupplements] = useState([])
-
-
 
     useEffect(() => {
         fetch('/supplements')
@@ -24,7 +22,6 @@ function OrderForm() {
             // console.log(data)
         })
     }, [])
-
     
     const handleCheckboxes = (e) => {
         setSupplement(e.target.value)
@@ -33,7 +30,6 @@ function OrderForm() {
 
     const listSupplements = allSupplements.map(s => <SupplementCheckbox key={s.id} supplement={s} handleCheckboxes={handleCheckboxes} />)
 
-
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -41,8 +37,8 @@ function OrderForm() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                orderNumber: orderNumber,
-                // username: username,
+                order_number: parseInt(orderNumber),
+                name: orderName,
                 supplement_id: supplement,
                 quantity: parseInt(quantity),
                 // price: parseInt(price)
@@ -50,6 +46,7 @@ function OrderForm() {
         })
         .then(res => res.json())
         .then(s => {
+            setOrderName("")
             setOrderNumber("")
             setSupplement("")
             setQuantity("")
@@ -62,6 +59,14 @@ function OrderForm() {
         return (
             <div>
                 <form onSubmit={handleSubmit}>
+                    <h2>Order Name: </h2>
+                    <input 
+                        type="text"
+                        id="orderName"
+                        value={orderName}
+                        onChange={(e) => setOrderName(e.target.value)}
+                    /> 
+                    <hr />
                     <h3>Choose Supplements: </h3>
                     {listSupplements}
                     <hr />
