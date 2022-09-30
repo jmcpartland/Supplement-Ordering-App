@@ -5,6 +5,7 @@ import SupplementCheckbox from './SupplementCheckbox';
 
 function OrderForm() {
     const navigate = useNavigate()
+
     const { loggedIn } = useContext(UserContext)
 
     const [supplement, setSupplement] = useState("")
@@ -12,8 +13,7 @@ function OrderForm() {
     const [quantity, setQuantity] = useState("")
     const [errorsList, setErrorsList] = useState([])
     const [allSupplements, setAllSupplements] = useState([])
-    // const [username, setUsername] = useState("")
-    // const [price, setPrice] = useState("")
+
 
 
     useEffect(() => {
@@ -62,18 +62,18 @@ function OrderForm() {
         return (
             <div>
                 <form onSubmit={handleSubmit}>
+                    <h3>Choose Supplements: </h3>
+                    {listSupplements}
+                    <hr />
                     <label>Order Number: </label>
                     <input 
                         type="number"
                         id="orderNumber"
                         value={orderNumber}
                         onChange={(e) => setOrderNumber(e.target.value)}
-                    /> <br/>
-                    <h3>Choose Supplements: </h3>
-
-                    {listSupplements}
-                    <br />
-
+                    /> 
+                    <br/>
+                    <hr/>
                     <label>Quantity: </label>
                     <input 
                         type="number"
@@ -81,6 +81,7 @@ function OrderForm() {
                         value={quantity}
                         onChange={(e) => setQuantity(e.target.value)}
                     /> <br/>
+                    <hr/>
                     <input type="submit" />
                     <br />
                 </form>

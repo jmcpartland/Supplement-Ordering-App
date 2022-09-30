@@ -1,16 +1,14 @@
 import React, { useState, useContext } from "react"
-import { Route, useParams } from "react-router-dom"
 
-import { UserContext } from "../context/user"
+const Order = ({order}) => {
 
-const Order = () => {
-    const { user, loggedIn } = useContext(UserContext)
-    const params = useParams()
-    
+
     return(
-
-        <h2>Order</h2>
-    
+        <div>
+                <h3>{order.order_number}</h3>
+                <p>Quantity: {order.quantity}</p>
+                <p>Supplement: {parseInt(order.supplement_id)}</p>
+        </div>
     )
 }
 

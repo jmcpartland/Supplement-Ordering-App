@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
     before_action :authorize
 
     def index
+        # binding.pry
         orders = current_user.orders
         render json: orders
     end

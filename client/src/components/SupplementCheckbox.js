@@ -4,7 +4,6 @@ function SupplementCheckbox({supplement, handleCheckboxes}) {
 
     return (
         <>
-            <hr />
             <label>
             <b>{supplement.name}</b>
             <input
@@ -17,6 +16,8 @@ function SupplementCheckbox({supplement, handleCheckboxes}) {
             </label>
             <br />
             Manufacturer: {supplement.manufacturer}
+            <br />
+            <br />
         </>
     )
 }

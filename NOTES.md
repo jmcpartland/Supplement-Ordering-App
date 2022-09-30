@@ -28,7 +28,7 @@ supplements - table
 	manufacturer
     serving_size
 
-orders - table
+orders - table   C R U D ???
 	user_id
 	supplement_id
 	order_number
@@ -47,3 +47,6 @@ Stretch: As a user, I can:
     
 
 
+Things to do
+
+configure Serialization for all models
