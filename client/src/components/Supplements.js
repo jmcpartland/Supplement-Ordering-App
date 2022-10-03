@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useContext } from "react"
-import { Route, useParams } from "react-router-dom"
-import { useNavigate, NavLink } from "react-router-dom"
-import Supplement from "./Supplement"
+import { useNavigate } from "react-router-dom"
 import { UserContext } from "../context/user"
+import Supplement from "./Supplement"
 
 
 const Supplements = () => {
     const [supplements, setSupplements] = useState([])
-    const { user, loggedIn } = useContext(UserContext)
-    const params = useParams()
-
+    const { loggedIn } = useContext(UserContext)
     const navigate = useNavigate()
 
     useEffect(() => {

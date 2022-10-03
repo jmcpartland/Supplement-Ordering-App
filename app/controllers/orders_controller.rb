@@ -29,6 +29,13 @@ class OrdersController < ApplicationController
     end
 
     def destroy
+        order = current_user.orders.find_by(id: params[:id])
+        if order
+            order.delete
+            render json: order
+        else
+            render json: { error: "Order not found" }, status: :unauthorized
+        end
     end
 
     private
