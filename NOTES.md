@@ -28,7 +28,7 @@ supplements - table
 	manufacturer
     serving_size
 
-orders - table   C R U D ???
+orders - table   C R U D
 	user_id
 	supplement_id
 	order_number
@@ -40,7 +40,7 @@ MVP: As a user, I can:
     Log into the site
     View a list of all supplements
     Create an order for specific supplements
-    Modify or delete an order
+    Update or delete an order
     Create new supplements
 
 Stretch: As a user, I can:

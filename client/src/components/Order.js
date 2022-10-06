@@ -1,13 +1,16 @@
 import React, { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
+import OrderUpdateForm from "./OrderUpdateForm"
 
-const Order = ({order, handleDeleteOrder}) => {
+function Order({order, handleDeleteOrder}) {
     const navigate = useNavigate()
     const [thisOrder, setThisOrder] = useState(order)
 
-    const handleEdit = (e) => {
-        console.log(e)
+
+    const handleEditClick = (id) => {
+        navigate('/order-update-form', {state: {id: order}})
     }
+
 
     const handleDeleteClick = () => {
         fetch(`orders/${order.id}`, {
@@ -25,7 +28,7 @@ const Order = ({order, handleDeleteOrder}) => {
             <p>Order number: <b>{order.order_number}</b></p>
             <p>Quantity: <b>{order.quantity}</b></p>
             
-            <button onClick={ handleEdit }>Edit</button> | {' '}
+            <button onClick={ handleEditClick }>Edit</button> | {' '}
             <button onClick={ handleDeleteClick }>Delete</button>
             
         </div>

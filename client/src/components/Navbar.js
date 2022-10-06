@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 import { useNavigate, NavLink } from "react-router-dom"
 
-const Navbar = () => {
+function Navbar() {
     const { user, logout, loggedIn } = useContext(UserContext)
     const navigate = useNavigate()
 
@@ -36,7 +36,7 @@ const Navbar = () => {
     if (loggedIn) {
         return (
             <div>
-                <h1>Navbar</h1>
+                <h1>Supplement Ordering App</h1>
                 <h2>Hello {user.username}</h2>
                 <button onClick={ handleShowHome }>Home</button> | {' '}
                 <button onClick={ handleShowAllSupplements }>Show All Supplements</button> | {' '}

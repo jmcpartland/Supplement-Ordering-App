@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+
 
 function SupplementCheckbox({supplement, handleCheckboxes}) {
 
@@ -10,7 +11,7 @@ function SupplementCheckbox({supplement, handleCheckboxes}) {
                 type="radio"
                 name="supplement"
                 value={supplement.id}
-                // checked={}
+                // checked={checked}
                 onChange={handleCheckboxes}
                 />
             </label>

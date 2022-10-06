@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { UserContext } from "../context/user"
 import Order from "./Order"
 
-const Orders = () => {
+function Orders() {
     const [orders, setOrders] = useState([])
     const { user, loggedIn } = useContext(UserContext)
     const navigate = useNavigate()

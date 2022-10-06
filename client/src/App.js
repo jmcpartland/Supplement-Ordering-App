@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar"
 import Supplements from "./components/Supplements"
 import SupplementForm from "./components/SupplementForm"
 import OrderForm from "./components/OrderForm"
+import OrderUpdateForm from "./components/OrderUpdateForm"
 import Orders from "./components/Orders"
 import { UserProvider } from "./context/user"
 
@@ -26,6 +27,7 @@ function App(props) {
           <Route exact path="/supplement-form" element={<SupplementForm />} />
           <Route exact path="/order-form" element={<OrderForm />} />
           <Route exact path="/orders" element={<Orders />} />
+          <Route exact path="/order-update-form" element={<OrderUpdateForm />} />
         </Routes>
       </UserProvider>
     </div>
