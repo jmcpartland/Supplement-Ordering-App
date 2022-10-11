@@ -28,6 +28,10 @@ supplements - table
 	manufacturer
     serving_size
 
+supplements_orders - table
+    supplement_id
+    order_id
+
 orders - table   C R U D
 	user_id
 	supplement_id
@@ -50,3 +54,9 @@ Stretch: As a user, I can:
 Things to do
 
 configure Serialization for all models
+
+
+example of order:
+
+o = Order.last
+o.supplements.create([{name: "test sup"}, {name: "2 test sup"}])

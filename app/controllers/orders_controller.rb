@@ -1,11 +1,20 @@
 class OrdersController < ApplicationController
     before_action :authorize
 
+
+
+
+
+
     def index
         # binding.pry
         orders = current_user.orders
-        render json: orders, include: :supplement
+        render json: orders, include: :supplements
     end
+
+
+
+
 
     def create
         order = current_user.orders.create(order_params)
