@@ -20,11 +20,17 @@ function Order({order, handleDeleteOrder}) {
         .then(() => handleDeleteOrder(order))
     }
 
+    const listSupplements = order.supplements.map(s => <li>{s.name}</li>)
+
     return(
         <div>
             <hr />
             <h3>Order Name: </h3><b>{order.name}</b>
             {/* <p>Supplement: <b>{order.supplement.name}</b></p> */}
+            <h3>Supplements:</h3>
+            <ul>
+                {listSupplements}
+            </ul>
             <p>Order number: <b>{order.order_number}</b></p>
             <p>Quantity: <b>{order.quantity}</b></p>
             

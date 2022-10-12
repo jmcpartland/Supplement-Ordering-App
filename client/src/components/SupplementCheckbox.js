@@ -8,7 +8,7 @@ function SupplementCheckbox({supplement, handleCheckboxes}) {
             <label>
             <b>{supplement.name}</b>
             <input
-                type="radio"
+                type="checkbox"
                 name="supplement"
                 value={supplement.id}
                 // checked={checked}

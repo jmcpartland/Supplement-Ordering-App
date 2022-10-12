@@ -8,7 +8,7 @@ function OrderForm() {
 
     const { loggedIn } = useContext(UserContext)
     const [orderName, setOrderName] = useState("")
-    const [supplement, setSupplement] = useState("")
+    const [supplements, setSupplements] = useState([])
     const [orderNumber, setOrderNumber] = useState("")
     const [quantity, setQuantity] = useState("")
     const [errorsList, setErrorsList] = useState([])
@@ -23,9 +23,19 @@ function OrderForm() {
         })
     }, [])
     
+
+
     const handleCheckboxes = (e) => {
-        setSupplement(e.target.value)
-        console.log(e.target.value)
+        const { value, checked } = e.target
+
+        if (checked) {
+            setSupplements([...supplements, value])
+        }
+        else {
+            setSupplements(supplements.filter((e) => e !== value))
+        }
+
+        console.log(value)
     }
 
     const listSupplements = allSupplements.map((s) => <SupplementCheckbox key={s.id} supplement={s} handleCheckboxes={handleCheckboxes} />)
@@ -33,22 +43,22 @@ function OrderForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        console.log(supplements)
         fetch('/orders', { // configuration object
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 order_number: parseInt(orderNumber),
                 name: orderName,
-                supplement_id: supplement,
+                supplements: supplements,
                 quantity: parseInt(quantity),
-                // price: parseInt(price)
             })
         })
         .then(res => res.json())
         .then(s => {
             setOrderName("")
             setOrderNumber("")
-            setSupplement("")
+            setSupplements([])
             setQuantity("")
             navigate('/orders')
         })
