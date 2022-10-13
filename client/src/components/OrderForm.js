@@ -22,7 +22,6 @@ function OrderForm() {
             // console.log(data)
         })
     }, [])
-    
 
 
     const handleCheckboxes = (e) => {
@@ -43,14 +42,15 @@ function OrderForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        console.log(supplements)
+        const testSupplements = [{id: '1'}, {id: '2'}, {id: '3'}]
+        
         fetch('/orders', { // configuration object
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 order_number: parseInt(orderNumber),
                 name: orderName,
-                supplements: supplements,
+                supplements: testSupplements,
                 quantity: parseInt(quantity),
             })
         })

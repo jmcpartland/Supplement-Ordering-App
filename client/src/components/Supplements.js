@@ -14,19 +14,21 @@ const Supplements = () => {
         .then(res => res.json())
         .then(data => setSupplements(data))
     }, [])
-
-    const listSupplements = supplements.map(s => <Supplement key={s.id} supplement={s} />)
-
+    
     const handleCreateSupplement = () => {
         navigate('/supplement-form')
     }
+    
+    const handleDeleteSupplement = (e) => {
+        console.log(e)
+    }
 
+    const listSupplements = supplements.map(s => <Supplement key={s.id} supplement={s} handleDeleteSupplement={handleDeleteSupplement} />)
 
     if (loggedIn) {
         return (
             <div>
                 <h2>Supplements</h2>
-
                 <button onClick={ handleCreateSupplement }>Create Supplement</button>
                 <br />
                     {listSupplements}

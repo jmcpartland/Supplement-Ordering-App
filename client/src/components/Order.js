@@ -11,7 +11,6 @@ function Order({order, handleDeleteOrder}) {
         navigate('/order-update-form', {state: {id: order}})
     }
 
-
     const handleDeleteClick = () => {
         fetch(`orders/${order.id}`, {
             method: 'DELETE',
@@ -26,7 +25,6 @@ function Order({order, handleDeleteOrder}) {
         <div>
             <hr />
             <h3>Order Name: </h3><b>{order.name}</b>
-            {/* <p>Supplement: <b>{order.supplement.name}</b></p> */}
             <h3>Supplements:</h3>
             <ul>
                 {listSupplements}

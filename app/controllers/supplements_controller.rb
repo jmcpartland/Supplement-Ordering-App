@@ -28,6 +28,13 @@ class SupplementsController < ApplicationController
     end
     
     def destroy
+        supplement = Supplement.find_by(id: params[:id])
+        if supplement
+            supplement.delete
+            render json: supplement
+        else
+            render json: { error: "Supplement not found" }, status: :unauthorized
+        end
     end
 
 

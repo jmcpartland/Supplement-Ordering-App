@@ -5,5 +5,6 @@ class User < ApplicationRecord
     # validates :password, :password_confirmation, presence: true
     
     has_many :orders
-    has_many :supplements, through: :orders
+    has_many :order_supplement
+    has_many :supplements, through: :order_supplements
 end

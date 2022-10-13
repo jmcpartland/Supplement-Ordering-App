@@ -1,25 +1,18 @@
 class OrdersController < ApplicationController
     before_action :authorize
 
-
-
-
-
-
     def index
-        # binding.pry
         orders = current_user.orders
         render json: orders, include: :supplements
     end
-
-
-
-
-
+    
     def create
+        binding.pry
         order = current_user.orders.create(order_params)
+        order.supplements.create(params[:supplements])
+
         if order.valid?
-            render json: order
+            render json: order, include: :supplements
         else
             render json: { errors: order.errors.full_messages }, status: :unprocessable_entity
         end
@@ -54,7 +47,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-        params.permit(:name, :order_number, :quantity, :supplement_id)
+        params.permit(:name, :order_number, :quantity, :supplements)
     end
     
     def authorize
