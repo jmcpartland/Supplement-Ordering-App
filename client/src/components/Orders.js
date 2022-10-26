@@ -8,8 +8,8 @@ function Orders() {
     const { user, loggedIn } = useContext(UserContext)
     const navigate = useNavigate()
 
-    function handleDeleteOrder(deleteOrder) {
-        const updatedOrders = orders.filter((order) => order.id !== deleteOrder.id);
+    function handleDeleteOrder(order) {
+        const updatedOrders = orders.filter((o) => o.id !== order.id);
         setOrders(updatedOrders);
     }
 
@@ -22,12 +22,20 @@ function Orders() {
 
     const listOrders = orders.map(o => <Order key={o.id} order={o} handleDeleteOrder={handleDeleteOrder}/>)
 
+    if (loggedIn) {
     return(
         <div>
             <h2>My Orders</h2>
             {listOrders}
         </div>
     )
+    } else {
+        return (
+            <div>
+                <h3>You need to be logged in to see supplements</h3>
+            </div>
+        )
+    }
 }
 
 export default Orders;

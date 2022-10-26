@@ -1,3 +1,5 @@
+
+## Structure
 Models:
     user
     order
@@ -51,12 +53,22 @@ Stretch: As a user, I can:
     
 
 
-Things to do
+## Things to do
+clean up table columns to match new associations
 
 configure Serialization for all models
 
 
 example of order:
-
+```
 o = Order.last
 o.supplements.create([{name: "test sup"}, {name: "2 test sup"}])
+```
+
+## How to update records with has_many through
+
+```console
+o = Order.first
+s = Supplement.third
+o.supplements<<(s)
+```

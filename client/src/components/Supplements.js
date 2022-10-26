@@ -19,8 +19,9 @@ const Supplements = () => {
         navigate('/supplement-form')
     }
     
-    const handleDeleteSupplement = (e) => {
-        console.log(e)
+    const handleDeleteSupplement = (supplement) => {
+        const updatedSupplements = supplements.filter((s) => s.id !== supplement.id)
+        setSupplements(updatedSupplements)
     }
 
     const listSupplements = supplements.map(s => <Supplement key={s.id} supplement={s} handleDeleteSupplement={handleDeleteSupplement} />)

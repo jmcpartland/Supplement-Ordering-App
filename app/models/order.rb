@@ -3,7 +3,5 @@ class Order < ApplicationRecord
 
     belongs_to :user
     has_many :order_supplements
-    has_many :supplements through: :order_supplements
-
-    # accepts_nested_attributes_for :supplements
+    has_many :supplements, through: :order_supplements
 end

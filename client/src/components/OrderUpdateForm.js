@@ -9,12 +9,12 @@ function OrderUpdateForm() {
     const location = useLocation()
     const order = location.state.id
 
-    const { loggedIn } = useContext(UserContext)
+    // const { loggedIn } = useContext(UserContext)
     const [orderName, setOrderName] = useState(order.name)
-    const [supplement, setSupplement] = useState(order.supplement_id)
+    const [supplements, setSupplements] = useState(order.supplement_id)
     const [orderNumber, setOrderNumber] = useState(order.order_number)
     const [quantity, setQuantity] = useState(order.quantity)
-    const [errorsList, setErrorsList] = useState([])
+    // const [errorsList, setErrorsList] = useState([])
     const [allSupplements, setAllSupplements] = useState([])
 
     useEffect(() => {
@@ -23,13 +23,18 @@ function OrderUpdateForm() {
         .then(data => {
             setAllSupplements(data)
         })
-    }, [supplement])
+    }, [])
     
     const handleCheckboxes = (e) => {
-        setSupplement(e)
-        console.log(e)
+        const { value, checked } = e.target
+        if (checked) {
+            setSupplements([...supplements, value])
+        }
+        else {
+            setSupplements(supplements.filter((e) => e !== value))
+        }
     }
-    
+
     const listSupplements = allSupplements.map(s => <SupplementCheckboxUpdate key={s.id} supplement={s} order={order} handleCheckboxes={handleCheckboxes} />)
 
     const handleSubmit = (e) => {
@@ -40,7 +45,7 @@ function OrderUpdateForm() {
             body: JSON.stringify({
                 order_number: parseInt(orderNumber),
                 name: orderName,
-                supplement_id: parseInt(supplement),
+                supplements: supplements,
                 quantity: parseInt(quantity),
                 // price: parseInt(price)
             })
@@ -49,7 +54,7 @@ function OrderUpdateForm() {
         .then(s => {
             setOrderName("")
             setOrderNumber("")
-            setSupplement("")
+            setSupplements([])
             setQuantity("")
             navigate('/orders')
         })

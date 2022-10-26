@@ -6,7 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Supplement.create(name: 'Melatonin', manufacturer: "Douglas Labs", serving_size: 1)
-Supplement.create(name: 'Vitamin C', manufacturer: "Pure Encapsulation", serving_size: 1)
-Supplement.create(name: 'Vitamin D', manufacturer: "Pure Encapsulation", serving_size: 1)
+Order.create(user_id: 9, name: "Order 1")
+Order.create(user_id: 9, name: "Order 2")
+Order.create(user_id: 9, name: "Order 3")
+
+OrderSupplement.create(supplement_id: 1, order_id: 63, user_id: 9)
+OrderSupplement.create(supplement_id: 2, order_id: 63, user_id: 9)
 

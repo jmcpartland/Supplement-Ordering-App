@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import OrderUpdateForm from "./OrderUpdateForm"
+// import OrderUpdateForm from "./OrderUpdateForm"
 
 function Order({order, handleDeleteOrder}) {
     const navigate = useNavigate()
-    const [thisOrder, setThisOrder] = useState(order)
+    // const [thisOrder, setThisOrder] = useState(order)
 
 
     const handleEditClick = (id) => {

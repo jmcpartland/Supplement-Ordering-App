@@ -2,27 +2,30 @@ import React, {useState, useEffect} from 'react';
 
 
 function SupplementCheckboxUpdate({supplement, order, handleCheckboxes}) {
-    const [checked, setChecked] = useState(supplement.id === order.supplement_id)
+    const [isChecked, setIsChecked] = useState(order.supplements.map(s => s.id).includes(supplement.id))
 
+    // console.log(order.supplements.map(s => s.id == supplement.id))
+    // console.log(supplement)
+    
     // useEffect(() => {
     //     console.log(checked)
     // }, [checked])
 
-    const selectCheckbox = (e) => {
-        setChecked(true);
-        handleCheckboxes(e.target.value)
-    }
+    // const selectCheckbox = (e) => {
+    //     setIsChecked(true);
+    //     handleCheckboxes(e.target.value)
+    // }
     
     return (
         <>
             <label>
             <b>{supplement.name}</b>
             <input
-                type="radio"
+                type="checkbox"
                 name="supplement"
                 value={supplement.id}
-                checked={checked}
-                onChange={selectCheckbox}
+                checked={isChecked}
+                onChange={handleCheckboxes}
                 />
             </label>
             <br />

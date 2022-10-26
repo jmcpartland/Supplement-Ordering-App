@@ -11,7 +11,7 @@ function OrderForm() {
     const [supplements, setSupplements] = useState([])
     const [orderNumber, setOrderNumber] = useState("")
     const [quantity, setQuantity] = useState("")
-    const [errorsList, setErrorsList] = useState([])
+    // const [errorsList, setErrorsList] = useState([])
     const [allSupplements, setAllSupplements] = useState([])
 
     useEffect(() => {
@@ -33,25 +33,21 @@ function OrderForm() {
         else {
             setSupplements(supplements.filter((e) => e !== value))
         }
-
-        console.log(value)
     }
 
     const listSupplements = allSupplements.map((s) => <SupplementCheckbox key={s.id} supplement={s} handleCheckboxes={handleCheckboxes} />)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        const testSupplements = [{id: '1'}, {id: '2'}, {id: '3'}]
         
-        fetch('/orders', { // configuration object
+        fetch('/orders', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 order_number: parseInt(orderNumber),
                 name: orderName,
-                supplements: testSupplements,
                 quantity: parseInt(quantity),
+                supplements: supplements,
             })
         })
         .then(res => res.json())
@@ -63,7 +59,6 @@ function OrderForm() {
             navigate('/orders')
         })
     }
-
 
     if (loggedIn) {
         return (

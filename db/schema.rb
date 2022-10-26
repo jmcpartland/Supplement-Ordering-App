@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_11_214838) do
+ActiveRecord::Schema.define(version: 2022_10_14_142323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "order_supplements", force: :cascade do |t|
+    t.integer "supplement_id"
+    t.integer "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+  end
 
   create_table "orders", force: :cascade do |t|
     t.integer "order_number"
@@ -23,13 +31,6 @@ ActiveRecord::Schema.define(version: 2022_10_11_214838) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-  end
- 
-  create_table "orders_supplements", id: false, force: :cascade do |t|
-    t.bigint "supplement_id", null: false
-    t.bigint "order_id", null: false
-    t.index ["order_id"], name: "index_orders_supplements_on_order_id"
-    t.index ["supplement_id"], name: "index_orders_supplements_on_supplement_id"
   end
 
   create_table "supplements", force: :cascade do |t|
