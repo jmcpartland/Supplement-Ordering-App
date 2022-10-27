@@ -9,9 +9,9 @@ function OrderUpdateForm() {
     const location = useLocation()
     const order = location.state.id
 
-    // const { loggedIn } = useContext(UserContext)
+    const { loggedIn } = useContext(UserContext)
     const [orderName, setOrderName] = useState(order.name)
-    const [supplements, setSupplements] = useState(order.supplement_id)
+    const [supplements, setSupplements] = useState([])
     const [orderNumber, setOrderNumber] = useState(order.order_number)
     const [quantity, setQuantity] = useState(order.quantity)
     // const [errorsList, setErrorsList] = useState([])
@@ -23,15 +23,20 @@ function OrderUpdateForm() {
         .then(data => {
             setAllSupplements(data)
         })
+        setSupplements(order.supplements.map(s => s.id))
     }, [])
     
+    console.log(supplements)
+
     const handleCheckboxes = (e) => {
+        console.log(e.target)
+
         const { value, checked } = e.target
         if (checked) {
             setSupplements([...supplements, value])
         }
         else {
-            setSupplements(supplements.filter((e) => e !== value))
+            setSupplements(supplements.filter((num) => num != value))
         }
     }
 
@@ -39,15 +44,15 @@ function OrderUpdateForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
         fetch(`/orders/${order.id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 order_number: parseInt(orderNumber),
                 name: orderName,
-                supplements: supplements,
                 quantity: parseInt(quantity),
-                // price: parseInt(price)
+                supplements: supplements,
             })
         })
         .then(res => res.json())
@@ -60,6 +65,7 @@ function OrderUpdateForm() {
         })
     }
 
+    if (loggedIn) {
         return (
             <div>
                 <form onSubmit={handleSubmit}>
@@ -72,7 +78,7 @@ function OrderUpdateForm() {
                     /> 
                     <hr />
                     <h3>Choose Supplements: </h3>
-                    {listSupplements}
+                        {listSupplements}
                     <hr />
                     <label>Order Number: </label>
                     <input 
@@ -96,6 +102,13 @@ function OrderUpdateForm() {
                 </form>
             </div>
         )
+    } else {
+        return (
+            <div>
+                <h3>You need to be logged in to see the Order form</h3>
+            </div>
+        )
+    }
 }
 
 export default OrderUpdateForm

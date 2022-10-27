@@ -6,6 +6,15 @@ class OrdersController < ApplicationController
         orders = current_user.orders
         render json: orders, include: :supplements
     end
+
+    def show                
+        order = current_user.orders.find_by(id: params[:id])
+        if order
+            render json: order
+        else
+            render json: { error: "Order not found" }, status: :unauthorized
+        end
+    end
     
     def create
         order = current_user.orders.create(order_params)
@@ -20,16 +29,18 @@ class OrdersController < ApplicationController
         end
     end
 
-    def show                
-        order = current_user.orders.find_by(id: params[:id])
-        if order
-            render json: order
-        else
-            render json: { error: "Order not found" }, status: :unauthorized
-        end
-    end
-
     def update
+        order = current_user.orders.find_by(id: params[:id])
+        order.update(order_params)
+        supplements = (params[:supplements])
+        supObjs = supplements.map{|s| Supplement.find_by(id: s)}
+        order.supplements.replace(supObjs)
+
+        if orderSups.valid?
+            render json: order, include: :supplements
+        else
+            render json: { errors: order.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     def destroy
@@ -49,7 +60,7 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-        params.permit(:name, :order_number, :quantity)
+        params.permit(:id, :name, :order_number, :quantity)
     end
     
     def authorize

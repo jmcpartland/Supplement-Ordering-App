@@ -2,20 +2,20 @@ import React, {useState, useEffect} from 'react';
 
 
 function SupplementCheckboxUpdate({supplement, order, handleCheckboxes}) {
-    const [isChecked, setIsChecked] = useState(order.supplements.map(s => s.id).includes(supplement.id))
+    const checkTrueFalse = order.supplements.map(s => s.id).includes(supplement.id)
+    const [isChecked, setIsChecked] = useState(checkTrueFalse)
 
-    // console.log(order.supplements.map(s => s.id == supplement.id))
-    // console.log(supplement)
+    const selectCheckbox = (e) => {
+        e.target.checked = !isChecked
+        setIsChecked(!isChecked);
+        handleCheckboxes(e)
+        
+        console.log(isChecked)
+    }
     
-    // useEffect(() => {
-    //     console.log(checked)
-    // }, [checked])
+    console.log(isChecked)
+    
 
-    // const selectCheckbox = (e) => {
-    //     setIsChecked(true);
-    //     handleCheckboxes(e.target.value)
-    // }
-    
     return (
         <>
             <label>
@@ -25,7 +25,7 @@ function SupplementCheckboxUpdate({supplement, order, handleCheckboxes}) {
                 name="supplement"
                 value={supplement.id}
                 checked={isChecked}
-                onChange={handleCheckboxes}
+                onChange={selectCheckbox}
                 />
             </label>
             <br />

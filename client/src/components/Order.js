@@ -26,9 +26,9 @@ function Order({order, handleDeleteOrder}) {
             <hr />
             <h3>Order Name: </h3><b>{order.name}</b>
             <h3>Supplements:</h3>
-            <ul>
+            <p>
                 {listSupplements}
-            </ul>
+            </p>
             <p>Order number: <b>{order.order_number}</b></p>
             <p>Quantity: <b>{order.quantity}</b></p>
             
