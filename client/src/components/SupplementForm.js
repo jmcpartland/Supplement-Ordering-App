@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom"
 
 function SupplementForm() {
 
@@ -7,6 +8,7 @@ function SupplementForm() {
     const [servingSize, setServingSize] = useState(0)
     const [errorsList, setErrorsList] = useState([])
 
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,9 +24,15 @@ function SupplementForm() {
         })
         .then(res => res.json())
         .then(s => {
+            if(!s.errors) {
                 setName("")
                 setManufacturer("")
                 setServingSize("")
+                navigate('/supplements')
+            } else {
+                const errorLis = s.errors.map(e => <li>{e}</li>)
+                setErrorsList(errorLis)
+            }
         })
     }
 
@@ -54,6 +62,9 @@ function SupplementForm() {
                 /> <br/>
                 <input type="submit" />
             </form>
+            <ul>
+                <h3>{errorsList}</h3>
+            </ul>
         </div>
     )
 }
