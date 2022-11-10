@@ -49,6 +49,8 @@ function Navbar() {
     } else {
         return (
             <div>
+                <h1>Supplement Ordering App</h1>
+
                 <NavLink to='/login'>
                     <button>Login</button>
                 </NavLink>
