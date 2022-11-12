@@ -2,6 +2,11 @@ class SupplementsController < ApplicationController
     before_action :authorize
 
     def index
+        supplements = current_user.supplements
+        render json: supplements.uniq
+    end
+
+    def show_all
         supplements = Supplement.all
         render json: supplements
     end

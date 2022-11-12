@@ -1,26 +1,36 @@
 import React, { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { UserContext } from "../context/user"
-import MySupplement from "./MySupplement"
+import Supplement from "./Supplement"
 
 
-const Supplements = () => {
+const AllSupplements = () => {
     const [supplements, setSupplements] = useState([])
     const { loggedIn } = useContext(UserContext)
     const navigate = useNavigate()
 
     useEffect(() => {
-        fetch('/supplements')
+        fetch('/all-supplements')
         .then(res => res.json())
         .then(data => setSupplements(data))
     }, [])
+    
+    const handleCreateSupplement = () => {
+        navigate('/supplement-form')
+    }
+    
+    const handleDeleteSupplement = (supplement) => {
+        const updatedSupplements = supplements.filter((s) => s.id !== supplement.id)
+        setSupplements(updatedSupplements)
+    }
 
-    const listSupplements = supplements.map(s => <MySupplement key={s.id} supplement={s} />)
+    const listSupplements = supplements.map(s => <Supplement key={s.id} supplement={s} handleDeleteSupplement={handleDeleteSupplement} />)
 
     if (loggedIn) {
         return (
             <div>
-                <h2>My Supplements</h2>
+                <h2>Supplements</h2>
+                <button onClick={ handleCreateSupplement }>Create Supplement</button>
                 <br />
                     {listSupplements}
 
@@ -35,4 +45,4 @@ const Supplements = () => {
     }    
 }
 
-export default Supplements;
+export default AllSupplements;

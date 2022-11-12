@@ -18,11 +18,15 @@ function Navbar() {
     }
 
     const handleShowAllSupplements = () => {
-        navigate('/supplements')
+        navigate('/all-supplements')
     }
 
     const handleShowHome = () => {
         navigate('/')
+    }
+
+    const handleShowMySupplements = () => {
+        navigate('/supplements')
     }
 
     const handleShowMyOrders = () => {
@@ -39,9 +43,10 @@ function Navbar() {
                 <h1>Supplement Ordering App</h1>
                 <h2>Hello {user.username}</h2>
                 <button onClick={ handleShowHome }>Home</button> | {' '}
-                <button onClick={ handleShowAllSupplements }>Show All Supplements</button> | {' '}
+                <button onClick={ handleShowMySupplements }>Show My Supplements</button> | {' '}
                 <button onClick={ handleShowMyOrders }>Show My Orders</button> | {' '}
-                <button onClick={ handleCreateOrder }>Create New Order</button> | {' '}
+                <button onClick={ handleCreateOrder }>Create New Order</button>  <br /><br />
+                <button onClick={ handleShowAllSupplements }>Show All Supplements</button> | {' '}
                 <button onClick={ handleLogout }>Logout</button>
                 <hr/>
             </div>

@@ -26,7 +26,7 @@ function OrderUpdateForm() {
         setSupplements(order.supplements.map(s => s.id))
     }, [])
     
-    console.log(supplements)
+    // console.log(order.id)
 
     const handleCheckboxes = (e) => {
         console.log(e.target)
