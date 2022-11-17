@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-    # validates :quantity, :price, :user_id, :supplement_id, presence: true
+    validates :name, :quantity, presence: true
 
     belongs_to :user
     has_many :order_supplements

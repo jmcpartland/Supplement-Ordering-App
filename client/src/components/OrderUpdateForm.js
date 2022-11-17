@@ -8,17 +8,16 @@ function OrderUpdateForm() {
     const navigate = useNavigate()
     const location = useLocation()
     const order = location.state.id
-
     const { loggedIn } = useContext(UserContext)
     const [orderName, setOrderName] = useState(order.name)
     const [supplements, setSupplements] = useState([])
     const [orderNumber, setOrderNumber] = useState(order.order_number)
     const [quantity, setQuantity] = useState(order.quantity)
-    // const [errorsList, setErrorsList] = useState([])
+    const [errorsList, setErrorsList] = useState([])
     const [allSupplements, setAllSupplements] = useState([])
 
     useEffect(() => {
-        fetch('/supplements')
+        fetch('/all-supplements')
         .then(res => res.json())
         .then(data => {
             setAllSupplements(data)
@@ -26,10 +25,8 @@ function OrderUpdateForm() {
         setSupplements(order.supplements.map(s => s.id))
     }, [])
     
-    // console.log(order.id)
-
     const handleCheckboxes = (e) => {
-        console.log(e.target)
+        // console.log(e.target)
 
         const { value, checked } = e.target
         if (checked) {
@@ -52,16 +49,21 @@ function OrderUpdateForm() {
                 order_number: parseInt(orderNumber),
                 name: orderName,
                 quantity: parseInt(quantity),
-                supplements: supplements,
+                supplements: supplements
             })
         })
         .then(res => res.json())
         .then(s => {
-            setOrderName("")
-            setOrderNumber("")
-            setSupplements([])
-            setQuantity("")
-            navigate('/orders')
+            if (!s.errors) {
+                setOrderName("")
+                setOrderNumber("")
+                setSupplements([])
+                setQuantity("")
+                navigate('/orders')
+            } else {
+                const errorLis = s.errors.map(e => <li>{e}</li>)
+                setErrorsList(errorLis) 
+            }
         })
     }
 
@@ -100,6 +102,9 @@ function OrderUpdateForm() {
                     <input type="submit" value="Update Order"/>
                     <br />
                 </form>
+                <ul>
+                    <h3>{errorsList}</h3>
+                </ul>
             </div>
         )
     } else {

@@ -21,6 +21,10 @@ class SupplementsController < ApplicationController
     end
 
     def show
+
+        binding.pry
+    
+
         supplement = current_user.supplements.find_by(id: params[:id])
         if supplement
             render json: supplement
@@ -29,8 +33,8 @@ class SupplementsController < ApplicationController
         end
     end
 
-    def update
-    end
+    # def update
+    # end
     
     def destroy
         supplement = Supplement.find_by(id: params[:id])

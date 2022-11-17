@@ -28,7 +28,7 @@ function SupplementForm() {
                 setName("")
                 setManufacturer("")
                 setServingSize("")
-                navigate('/supplements')
+                navigate('/all-supplements')
             } else {
                 const errorLis = s.errors.map(e => <li>{e}</li>)
                 setErrorsList(errorLis)

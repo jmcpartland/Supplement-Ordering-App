@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
     before_action :authorize
 
     def index
-        # binding.pry
         orders = current_user.orders
         render json: orders, include: :supplements
     end
@@ -22,7 +21,7 @@ class OrdersController < ApplicationController
         supObjs = supplements.map{|s| Supplement.find_by(id: s)}
         orderSups = supObjs.each{|s| order.supplements<<s}
 
-        if orderSups.valid?
+        if order.valid?
             render json: order, include: :supplements
         else
             render json: { errors: order.errors.full_messages }, status: :unprocessable_entity
@@ -34,9 +33,9 @@ class OrdersController < ApplicationController
         order.update(order_params)
         supplements = (params[:supplements])
         supObjs = supplements.map{|s| Supplement.find_by(id: s)}
-        order.supplements.replace(supObjs)
+        orderSups = order.supplements.replace(supObjs)
 
-        if orderSups.valid?
+        if order.valid?
             render json: order, include: :supplements
         else
             render json: { errors: order.errors.full_messages }, status: :unprocessable_entity

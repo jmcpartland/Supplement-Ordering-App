@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react"
-import { useNavigate } from "react-router-dom"
 import { UserContext } from "../context/user"
 import MySupplement from "./MySupplement"
 
@@ -7,7 +6,6 @@ import MySupplement from "./MySupplement"
 const Supplements = () => {
     const [supplements, setSupplements] = useState([])
     const { loggedIn } = useContext(UserContext)
-    const navigate = useNavigate()
 
     useEffect(() => {
         fetch('/supplements')

@@ -11,11 +11,11 @@ function OrderForm() {
     const [supplements, setSupplements] = useState([])
     const [orderNumber, setOrderNumber] = useState("")
     const [quantity, setQuantity] = useState("")
-    // const [errorsList, setErrorsList] = useState([])
+    const [errorsList, setErrorsList] = useState([])
     const [allSupplements, setAllSupplements] = useState([])
 
     useEffect(() => {
-        fetch('/supplements')
+        fetch('/all-supplements')
         .then(res => res.json())
         .then(data => {
             setAllSupplements(data)
@@ -26,7 +26,6 @@ function OrderForm() {
 
     const handleCheckboxes = (e) => {
         const { value, checked } = e.target
-
         if (checked) {
             setSupplements([...supplements, value])
         }
@@ -52,11 +51,16 @@ function OrderForm() {
         })
         .then(res => res.json())
         .then(s => {
-            setOrderName("")
-            setOrderNumber("")
-            setSupplements([])
-            setQuantity("")
-            navigate('/orders')
+            if (!s.errors) {
+                setOrderName("")
+                setOrderNumber("")
+                setSupplements([])
+                setQuantity("")
+                navigate('/orders')
+            } else {
+                const errorLis = s.errors.map(e => <li>{e}</li>)
+                setErrorsList(errorLis) 
+            }
         })
     }
 
@@ -95,6 +99,9 @@ function OrderForm() {
                     <input type="submit" />
                     <br />
                 </form>
+                <ul>
+                    <h3>{errorsList}</h3>
+                </ul>
             </div>
         )
     } else {

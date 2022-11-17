@@ -9,7 +9,7 @@ const Login = () => {
 
     const navigate = useNavigate()
 
-    const {login, loggedIn} = useContext(UserContext);
+    const {login} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault()

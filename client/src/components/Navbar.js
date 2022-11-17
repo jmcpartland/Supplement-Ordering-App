@@ -36,12 +36,13 @@ function Navbar() {
     const handleCreateOrder = () => {
         navigate('/order-form')
     }
-    
+
     if (loggedIn) {
         return (
             <div>
                 <h1>Supplement Ordering App</h1>
                 <h2>Hello {user.username}</h2>
+
                 <button onClick={ handleShowHome }>Home</button> | {' '}
                 <button onClick={ handleShowMySupplements }>Show My Supplements</button> | {' '}
                 <button onClick={ handleShowMyOrders }>Show My Orders</button> | {' '}

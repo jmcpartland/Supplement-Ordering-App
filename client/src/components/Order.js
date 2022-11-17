@@ -1,11 +1,8 @@
-import React, { useState, useContext, useParams } from "react"
+import React from "react"
 import { useNavigate } from "react-router-dom"
-// import OrderUpdateForm from "./OrderUpdateForm"
 
 function Order({order, handleDeleteOrder}) {
     const navigate = useNavigate()
-    // const [thisOrder, setThisOrder] = useState(order)
-    // let params = useParams()
 
     const handleEditClick = (id) => {
         navigate(`${order.id}`, {state: {id: order}})

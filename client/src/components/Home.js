@@ -4,9 +4,12 @@ import { UserContext } from "../context/user";
 const Home = () => {
     const { user, loggedIn } = useContext(UserContext)
     
-    // debugger;
+    // function capitalizeFirstLetter(name) {
+    //     return name.charAt(0).toUpperCase() + name.slice(1);
+    // }
 
     if (!loggedIn || user.error) {
+
         return(<h3>Please Login or Signup</h3>)
     }
     else {

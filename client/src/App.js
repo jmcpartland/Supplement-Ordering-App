@@ -24,13 +24,13 @@ function App(props) {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
+          {/* <Route exact path="/logout" element={<Home />} /> */}
           <Route exact path="/supplements" element={<Supplements />} />
           <Route exact path="/all-supplements" element={<AllSupplements />} />
           <Route exact path="/supplement-form" element={<SupplementForm />} />
           <Route exact path="/order-form" element={<OrderForm />} />
-          <Route path="/orders/:id" element={<OrderUpdateForm />} />
           <Route exact path="/orders" element={<Orders />} />
-          {/* <Route exact path="/order-update-form" element={<OrderUpdateForm />} /> */}
+          <Route exact path="/orders/:id" element={<OrderUpdateForm />} />
         </Routes>
       </UserProvider>
     </div>
