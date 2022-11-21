@@ -24,14 +24,14 @@ function Orders() {
 
     if (loggedIn) {
     return(
-        <div>
+        <div className="stage">
             <h2>My Orders</h2>
             {listOrders}
         </div>
     )
     } else {
         return (
-            <div>
+            <div className="stage">
                 <h3>You need to be logged in to see supplements</h3>
             </div>
         )

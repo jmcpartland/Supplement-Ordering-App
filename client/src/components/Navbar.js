@@ -39,7 +39,7 @@ function Navbar() {
 
     if (loggedIn) {
         return (
-            <div>
+            <div className="header">
                 <h1>Supplement Ordering App</h1>
                 <h2>Hello {user.username}</h2>
 
@@ -54,7 +54,7 @@ function Navbar() {
         )
     } else {
         return (
-            <div>
+            <div className="header">
                 <h1>Supplement Ordering App</h1>
 
                 <NavLink to='/login'>
