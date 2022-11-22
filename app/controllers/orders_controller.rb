@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
             render json: { error: "Order not found" }, status: :unauthorized
         end
     end
-    
+
     def create
         order = current_user.orders.create(order_params)
         supplements = (params[:supplements])
