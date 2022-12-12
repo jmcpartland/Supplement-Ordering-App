@@ -21,9 +21,7 @@ class SupplementsController < ApplicationController
     end
 
     def show
-
-        binding.pry
-    
+        # binding.pry
 
         supplement = current_user.supplements.find_by(id: params[:id])
         if supplement

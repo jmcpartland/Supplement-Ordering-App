@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
 
   get '/all-supplements', to: 'supplements#show_all'
-  resources :supplements
+  resources :supplements, only: [:index, :show, :create, :destroy]
 
   resources :orders
   

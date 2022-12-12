@@ -24,7 +24,6 @@ function App(props) {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
-          {/* <Route exact path="/logout" element={<Home />} /> */}
           <Route exact path="/supplements" element={<Supplements />} />
           <Route exact path="/all-supplements" element={<AllSupplements />} />
           <Route exact path="/supplement-form" element={<SupplementForm />} />
