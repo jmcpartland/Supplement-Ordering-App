@@ -6,16 +6,12 @@ const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
-
     const navigate = useNavigate()
-
-    const {login} = useContext(UserContext);
+    const {login} = useContext(UserContext)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        // debugger
-
         fetch('/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
@@ -25,7 +21,6 @@ const Login = () => {
             })
         })
         .then(res => res.json())
-
         .then(user => {
             if (!user.error) {
                 login(user)
