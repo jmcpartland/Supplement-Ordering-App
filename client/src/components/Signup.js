@@ -7,14 +7,11 @@ const Signup = () => {
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errorsList, setErrorsList] = useState([])
-
     const navigate = useNavigate()
-
     const {signup} = useContext(UserContext);
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
         fetch('/signup', { // configuration object
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
