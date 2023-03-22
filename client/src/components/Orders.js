@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react"
-// import { useNavigate } from "react-router-dom"
 import { UserContext } from "../context/user"
 import Order from "./Order"
 
 function Orders() {
     const [orders, setOrders] = useState([])
     const { loggedIn } = useContext(UserContext)
-    // const navigate = useNavigate()
 
     function handleDeleteOrder(order) {
         const updatedOrders = orders.filter((o) => o.id !== order.id);

@@ -19,7 +19,6 @@ function OrderForm() {
         .then(res => res.json())
         .then(data => {
             setAllSupplements(data)
-            // console.log(data)
         })
     }, [])
 

@@ -21,8 +21,6 @@ class SupplementsController < ApplicationController
     end
 
     def show
-        # binding.pry
-
         supplement = current_user.supplements.find_by(id: params[:id])
         if supplement
             render json: supplement
@@ -30,9 +28,6 @@ class SupplementsController < ApplicationController
             render json: { error: "Supplement not found" }, status: :unauthorized
         end
     end
-
-    # def update
-    # end
     
     def destroy
         supplement = Supplement.find_by(id: params[:id])
@@ -43,7 +38,6 @@ class SupplementsController < ApplicationController
             render json: { error: "Supplement not found" }, status: :unauthorized
         end
     end
-
 
     private
 
@@ -58,5 +52,4 @@ class SupplementsController < ApplicationController
     def authorize
         return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
     end
-
 end

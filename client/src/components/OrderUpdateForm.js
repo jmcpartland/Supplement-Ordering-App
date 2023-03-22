@@ -26,8 +26,6 @@ function OrderUpdateForm() {
     }, [])
     
     const handleCheckboxes = (e) => {
-        // console.log(e.target)
-
         const { value, checked } = e.target
         if (checked) {
             setSupplements([...supplements, value])

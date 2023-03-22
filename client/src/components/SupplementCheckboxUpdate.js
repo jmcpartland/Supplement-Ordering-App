@@ -24,7 +24,6 @@ function SupplementCheckboxUpdate({supplement, order, handleCheckboxes}) {
             <br />
             Manufacturer: {supplement.manufacturer}
             <br />
-            <br />
         </>
     )
 }

@@ -11,7 +11,6 @@ function SupplementCheckbox({supplement, handleCheckboxes}) {
                 type="checkbox"
                 name="supplement"
                 value={supplement.id}
-                // checked={checked}
                 onChange={handleCheckboxes}
                 />
             </label>
